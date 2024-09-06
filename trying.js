@@ -10,7 +10,7 @@ async function getfact(){
     h1.after(p);
     p.prepend("FACT : ")
     }catch(e){
-        p.innerText=e;
+        console.log(e);
     }
 };
 getfact();
