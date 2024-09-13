@@ -10,7 +10,7 @@
   "description": "",
   "dependencies": {
     "ejs": "^3.1.10",
-    "express": "^4.20.0",
-    "type": "module"
-  }
+    "express": "^4.20.0"
+  },
+  "type": "module"
 }

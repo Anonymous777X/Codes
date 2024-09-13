@@ -1,5 +1,5 @@
-const express = require("express");
-const path = require("path");
+import express from 'express';
+import path from "path";
 let app = express();
 let port = 8080;
 app.set("view engine","ejs");
