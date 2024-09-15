@@ -12,7 +12,7 @@ app.listen(port,()=>{
     console.log(`listening in port:${port}`);
 });
 app.get("/",(req,res)=>{
-    res.render("home.ejs");
+    res.render("instagram.ejs");
 })
 // app.get("/query",(req,res)=>{
 //     let {q} =req.query;
