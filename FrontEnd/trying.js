@@ -1,19 +1,55 @@
-let url ='https://catfact.ninja/fact';
-let p= document.createElement("p");
-let h1 = document.querySelector("#h1");
-let body = document.querySelector("body");
-async function getfact(){
-    try{
-        let raw =await axios.get(url);
-    let data = raw.data.fact;
-    p.innerText=data
-    h1.after(p);
-    p.prepend("FACT : ")
-    }catch(e){
-        console.log(e);
+
+let obj = {
+    name :"amit",
+    rollno:24,
+    the : this, //
+    hello : function(){
+        console.log("Hello World",this.name); //depends on how they are called.
+       return console.log(this)
+    },
+    outer :function(){
+        console.log("outer :",this);
+        let inner =()=>{
+            console.log("inner:",this);
+        }
+        inner()
     }
-};
-getfact();
+}
+function hello(){
+    console.log("func hello this : ",this);
+}
+obj.outer();
+// let hell = obj.hello.bind(obj);
+// hell();
+// // console.log(obj.the);
+// console.log(obj.name);
+
+// class person{
+//     constructor(name,age){
+//         this.name = name;
+//         this.age = age;
+//     }
+// }
+// let p1 = new person("sahil",21);
+// console.log(p1);
+
+
+// let url ='https://catfact.ninja/fact';
+// let p= document.createElement("p");
+// let h1 = document.querySelector("#h1");
+// let body = document.querySelector("body");
+// async function getfact(){
+//     try{
+//         let raw =await axios.get(url);
+//     let data = raw.data.fact;
+//     p.innerText=data
+//     h1.after(p);
+//     p.prepend("FACT : ")
+//     }catch(e){
+//         console.log(e);
+//     }
+// };
+// getfact();
 
 // let url ='https://catfact.ninja/fact';
 // async function getfact(){
