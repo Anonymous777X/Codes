@@ -1,3 +1,5 @@
-data = data.filter(el => id !== el.id);
-    console.log(data.length);
-    res.redirect("/quora?_post=deleted");
+import {fileURlToPahth} from "url";
+
+const app= express();
+const __filename =fileURlToPahth(import.meta.url);
+const __dirname = path.dirname(__filename);

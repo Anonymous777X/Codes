@@ -1,24 +1,28 @@
+class College{
+    this.id =
+}
 
-let obj = {
-    name :"amit",
-    rollno:24,
-    the : this, //
-    hello : function(){
-        console.log("Hello World",this.name); //depends on how they are called.
-       return console.log(this)
-    },
-    outer :function(){
-        console.log("outer :",this);
-        let inner =()=>{
-            console.log("inner:",this);
-        }
-        inner()
-    }
-}
-function hello(){
-    console.log("func hello this : ",this);
-}
-obj.outer();
+
+// let obj = {
+//     name :"amit",
+//     rollno:24,
+//     the : this, //
+//     hello : function(){
+//         console.log("Hello World",this.name); //depends on how they are called.
+//        return console.log(this)
+//     },
+//     outer :function(){
+//         console.log("outer :",this);
+//         let inner =()=>{
+//             console.log("inner:",this);
+//         }
+//         inner()
+//     }
+// }
+// function hello(){
+//     console.log("func hello this : ",this);
+// }
+// obj.outer();
 // let hell = obj.hello.bind(obj);
 // hell();
 // // console.log(obj.the);
