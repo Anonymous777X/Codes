@@ -2,7 +2,31 @@ import express from "express";
 import path from 'path';
 import { fileURLToPath } from "url";
 import methodOverride from "method-override";
-import { v4 as uid } from 'uuid';
+import mongoose, { modelNames } from "mongoose";
+
+async function main(){
+    await mongoose.connect('mongodb://127.0.0.1:27017/quora');
+}
+
+main().then(()=>{
+    console.log("connection Successfull");
+}).catch(()=>{
+    console.log("Error in Connection !");
+});
+
+
+const chatschema = mongoose.Schema({
+    username :{
+        type: String,
+        required :true
+    },
+    content:{
+        type:String,
+        required :true
+    }
+});
+
+let post = mongoose.model("post",chatschema);
 
 
 const app = express();
@@ -21,74 +45,66 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"/views"));
 app.use(express.static(path.join(__dirname,"public/css")));
 
-let data =[
 
-    {   id:uid(),
-        username :"Shivam",
-         content:"this is very good app"
-    },
-    {    id:uid(),
-        username :"Satyam",
-         content:"karan to chutiya hai.."
-    },
-    {    id:uid(),
-        username :"karan",
-         content:"thek hai bhai"
-    },
-    {    id:uid(),
-        username :"Random-guy",
-         content:"karan ke tapka lga do"
-    }
-]
-app.get("/quora",(req,res)=>{
+app.get("/quora",async(req,res)=>{
+    let data =await post.find();
     res.render("quora.ejs",{data});
 });
 app.get("/quora/new",(req,res)=>{
     res.render("quora-form.ejs");
 });
-app.get("/quora/:id",(req,res)=>{
-    let {id} =req.params;
-    let post = data.find(p => id === p.id);
-    res.render("quora-details.ejs",{post});
+
+app.get("/quora/:id",async(req,res)=>{ //details
+    let {id:userid} =req.params;
+    let postfind = await post.findOne({_id:userid});
+
+    res.render("quora-details.ejs",{postfind});
 });
-app.patch("/quora/:id",(req,res)=>{  //update
+app.patch("/quora/:id",async(req,res)=>{  //update
     let {id} = req.params;  
     let newcontent =req.body.content;
-    let posts = data.find(post => id === post.id);
-    posts.content = newcontent;
+    await post.updateOne({_id:id},{content:newcontent})
     res.redirect("/quora?posted=done");
 });
-app.get("/quora/:id/edit",(req,res)=>{ //details
+app.get("/quora/:id/edit",async(req,res)=>{ //update
     let {id} = req.params;
-    let post = data.find(p => id === p.id);
-    res.render("quora-edit.ejs",{post});
+    let postfind = await post.findOne({_id:id});
+    res.render("quora-edit.ejs",{postfind});
 });
 
-app.get("/quora/:id/delete",(req,res)=>{
+app.get("/quora/:id/delete",async(req,res)=>{   //delete-form
     let {id}=req.params;
-    let post =data.find(p => id === p.id)
-    res.render("quora-delete",{post});
+    let postfind = await post.findOne({_id:id});
+    res.render("quora-delete",{postfind});
 })
 
-app.delete("/quora/:id",(req,res)=>{ //delete
+app.delete("/quora/:id",async(req,res)=>{ //delete
     let id =req.params.id;  
     let pass = req.body.password;
-    let post =data.find(p => id === p.id);
-    if(pass == post.username){
-        data =data.filter(p => id !== p.id)
-        res.redirect("/quora?post=deleted")
+    let postfind = await post.findOne({_id:id});
+    if(pass == postfind.username){
+       await post.deleteOne({_id:id});
+        res.redirect("/quora?post=deleted");
     }
     else{
         res.redirect("/quora?pass=wrong");
     }
 })
 
-app.post("/quora",(req,res)=>{  //create
-    let {username, content} =req.body;
-    let id = uid();
-    data.push({id, username,content});
-    res.redirect("/quora?posted=true");
-})
+app.post("/quora",async(req,res)=>{  //create
+    try{
+        let {username, content} =req.body;
+        let newPost=  new post({username,content});
+        console.log(newPost);
+        await newPost.save();
+    
+        res.redirect("/quora?posted=true");
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Every Field is Mandatory..");
+    }
+});
 app.get("*",(req,res)=>{
-    res.send("quora.ejs");
+    res.send("No_path");
 })

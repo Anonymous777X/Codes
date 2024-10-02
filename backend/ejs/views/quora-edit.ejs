@@ -9,11 +9,11 @@
 <body>
     <center>
         <div class="post"> <h1>Make Changes To Your Post</h1>
-        <h1 id="user">@<%=post.username%></h1>
-        <h3>ID : <%=post.id%></h3>
-    <form action="http://localhost:3030/quora/<%=post.id%>?_method=PATCH" method="post">
+        <h1 id="user">@<%=postfind.username%></h1>
+        <h3>ID : <%=postfind._id%></h3>
+    <form action="http://localhost:3030/quora/<%=postfind._id%>?_method=PATCH" method="post">
         <label for="content">Content :</label>
-            <textarea name="content" id="content" value="<%=post.content%>"></textarea>
+            <textarea name="content" id="content" value="<%=postfind.content%>"></textarea>
             <br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button>Submit</button>
         </center></div>

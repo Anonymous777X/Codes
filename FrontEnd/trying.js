@@ -1,6 +1,3 @@
-class College{
-    this.id =
-}
 
 
 // let obj = {

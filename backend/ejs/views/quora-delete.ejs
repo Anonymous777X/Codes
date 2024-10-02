@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="/quora-style.css">
 </head>
 <body><center><div class="post">
-    <form action="http://localhost:3030/quora/<%=post.id%>?_method=DELETE" method="post">
-        <h1>@<%= post.username%></h1>
-        <h2>Your ID: <%= post.id %></h2>
+    <form action="http://localhost:3030/quora/<%=postfind._id%>?_method=DELETE" method="post">
+        <h1>@<%= postfind.username%></h1>
+        <h2>Your ID: <%= postfind._id %></h2>
         <label for="pass">Enter Password to Delete Post</label>
         <input type="password" id="pass" name="password" placeholder="Your Password">
         &nbsp;&nbsp;

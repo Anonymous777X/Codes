@@ -11,21 +11,21 @@
     <title>Main Page</title>
 </head>
 <body>
-    <h1 id="h1">Bhole Bande!</h1>
+    <h1 id="h1"><div id="h1div">Bhole Bande !</div></h1>
     
         <%for(usr of data){%>
             <div class="post">
             <h2 class="user">@<%=usr.username%></h2>
             <h5 class="content"><%=usr.content%></h5>
            <!-- Show Details -->
-         <a href="http://localhost:3030/quora/<%=usr.id%>" class="btn btn-info" title="Show Details">
+         <a href="http://localhost:3030/quora/<%=usr._id%>" class="btn btn-info" title="Show Details">
                <i class="fa-solid fa-circle-info"></i>
            </a>
   <!-- Edit Post -->
-           <a href="http://localhost:3030/quora/<%=usr.id%>/edit" class="btn btn-warning" title="Edit Post">
+           <a href="http://localhost:3030/quora/<%=usr._id%>/edit" class="btn btn-warning" title="Edit Post">
              <i class="fa-regular fa-pen-to-square"></i>
              </a>
-         <a href="http://localhost:3030/quora/<%=usr.id%>/delete" class="btn btn-danger" title="Delete Post">
+         <a href="http://localhost:3030/quora/<%=usr._id%>/delete" class="btn btn-danger" title="Delete Post">
                 <i class="fas fa-trash" ></i>
               </a>
           
