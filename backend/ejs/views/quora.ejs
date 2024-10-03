@@ -15,20 +15,24 @@
     
         <%for(usr of data){%>
             <div class="post">
-            <h2 class="user">@<%=usr.username%></h2>
+           <img src="<%=usr.avatar %>" alt="User Image" id="img">
+            <div id="content"><h2 class="user">@<%=usr.username%></h2>
             <h5 class="content"><%=usr.content%></h5>
            <!-- Show Details -->
-         <a href="http://localhost:3030/quora/<%=usr._id%>" class="btn btn-info" title="Show Details">
-               <i class="fa-solid fa-circle-info"></i>
-           </a>
-  <!-- Edit Post -->
-           <a href="http://localhost:3030/quora/<%=usr._id%>/edit" class="btn btn-warning" title="Edit Post">
-             <i class="fa-regular fa-pen-to-square"></i>
-             </a>
-         <a href="http://localhost:3030/quora/<%=usr._id%>/delete" class="btn btn-danger" title="Delete Post">
-                <i class="fas fa-trash" ></i>
+            <br>
+           <p class="date"><%=usr.date.toString().split(" ").slice(0,4).join(" ")%></p>
+              <hr id="inhr">
+              <a href="http://localhost:3030/quora/<%=usr._id%>" class="btn btn-info" title="Show Details">
+                <i class="fa-solid fa-circle-info"></i>
+            </a>
+   <!-- Edit Post -->
+            <a href="http://localhost:3030/quora/<%=usr._id%>/edit" class="btn btn-warning" title="Edit Post">
+              <i class="fa-regular fa-pen-to-square"></i>
               </a>
-          
+          <a href="http://localhost:3030/quora/<%=usr._id%>/delete" class="btn btn-danger" title="Delete Post">
+                 <i class="fas fa-trash" ></i>
+               </a>
+            </div>
         </div>
         <hr>
         <%}%>

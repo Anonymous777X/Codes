@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from "url";
 import methodOverride from "method-override";
 import mongoose, { modelNames } from "mongoose";
+import { faker } from '@faker-js/faker';
 
 async function main(){
     await mongoose.connect('mongodb://127.0.0.1:27017/quora');
@@ -14,6 +15,11 @@ main().then(()=>{
     console.log("Error in Connection !");
 });
 
+function createRandomUser() {
+    return {
+      avatar: faker.image.avatar()
+    };
+  }
 
 const chatschema = mongoose.Schema({
     username :{
@@ -23,6 +29,14 @@ const chatschema = mongoose.Schema({
     content:{
         type:String,
         required :true
+    },
+    date:{
+        type:Date,
+        required:true
+    },
+    avatar:{
+        type:String,
+        required:true
     }
 });
 
@@ -94,7 +108,7 @@ app.delete("/quora/:id",async(req,res)=>{ //delete
 app.post("/quora",async(req,res)=>{  //create
     try{
         let {username, content} =req.body;
-        let newPost=  new post({username,content});
+        let newPost=  new post({username,content,date:new Date(),avatar:createRandomUser().avatar});
         console.log(newPost);
         await newPost.save();
     
@@ -107,4 +121,7 @@ app.post("/quora",async(req,res)=>{  //create
 });
 app.get("*",(req,res)=>{
     res.send("No_path");
-})
+});
+
+
+

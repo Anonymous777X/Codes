@@ -33,3 +33,29 @@ a{
     text-decoration: none;
     color: white;
 }
+#inhr{
+    color:#6EC207;
+}
+.date{
+    color: black;
+}
+#img{
+    border-radius: 50%;
+
+    height: 125px;
+    width: 125px;
+    display: inline-block;
+    margin-right: 40px;
+    border-color: red #6EC207 #6EC207 #6EC207;
+    border-width: 4px;
+    border-style: solid;
+    vertical-align:150%;
+}
+#content{
+    display: inline-block;
+    padding-bottom: 10px;
+}
+.date::before{
+    color: red;
+    content: "Posted On :";
+}
