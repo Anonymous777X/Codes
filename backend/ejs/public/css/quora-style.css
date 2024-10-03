@@ -34,7 +34,9 @@ a{
     color: white;
 }
 #inhr{
-    color:#6EC207;
+    border: none;
+    height: 1px;
+    background-color:red;
 }
 .date{
     color: black;
