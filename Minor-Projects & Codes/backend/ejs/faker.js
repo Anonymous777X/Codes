@@ -25,11 +25,11 @@ function createRandomUser() {
     };
   };
   
-let userss = faker.helpers.multiple(createRandomUser, {
-    count: 48,
-  });
+// let userss = faker.helpers.multiple(createRandomUser, {
+//     count: 48,
+//   });
 
-console.log(userss);
+// console.log(userss);
 
 const connection =  mysql.createConnection({
     host: 'localhost',
