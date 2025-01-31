@@ -1,42 +1,70 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+#card{
+  border-radius: 1rem;
+  border: 2px solid white;
+  margin: 0 2rem 0 0;
+  /* padding: 1rem; */
+  height: 300px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.container{
+  display: flex;
+  flex-wrap: wrap;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#oldprice{
+  text-decoration: line-through;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#newprice{
+  font-weight:bold ;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
+#upper {
+  position: relative; /* Ensure the parent is positioned */
+  flex: 1;
+  color: gold;
+  text-shadow: 1px 0 1px goldenrod;
+  display: flex;
+  flex-direction: column;
 }
 
-.read-the-docs {
-  color: #888;
+#upper::before {
+  content: "";
+  position: absolute; /* Position it absolutely within the parent */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width of the parent */
+  height: 100%; /* Full height of the parent */
+  background: url("https://th.bing.com/th/id/R.eb2aed5756940d4c91abcb5f4f6a6752?rik=%2bkrUmqQO52bW6w&riu=http%3a%2f%2fwww.giftwrapsolutions.co.za%2fcdn%2fshop%2fproducts%2fNavyBluewithSilverSwirls10MeterRollC10SwirlsNvySlvr50_100MeterAvailableonRequest.jpg%3fv%3d1622301549&ehk=a2NgergH%2fwVVWOZbelCOCBytfroTF8BBSDbKOMfV4ZI%3d&risl=&pid=ImgRaw&r=0");
+  background-size: cover; /* Resize the background image to cover the entire parent */
+  border-radius: 1rem 1rem 0 0;
+  opacity: 0.5;
+  z-index: -2; /* Ensure it stays behind the content */
+}
+#upper div{
+  justify-content: baseline;
+}
+#prod-img{
+  z-index: -1;
+  width: 120px ;
+  height: 100px;
+  object-fit: cover;
+  transform: scale(1.4);
+  overflow: visible;
+}
+#prod-img-div{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#lower{
+  background-color: goldenrod;
+  border-radius: 0 0 1rem 1rem;
 }
